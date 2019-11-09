@@ -24,7 +24,6 @@ def sectionmenu(request,back_bookid,back_chapterid):
     return render(request, 'books/sectionmenu.html', context)
 
 
-
 # content
 def content(request, back_bookid, back_chapterid, back_sectionid):
     context = {
