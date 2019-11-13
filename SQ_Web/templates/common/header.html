@@ -1,3 +1,18 @@
 {% block header %}
-    <div style="height: 70px;border: solid 1px yellow;"></div>
+{% load staticfiles %}
+    <div style="height: 70px;border: solid 1px yellow;">
+    {% if not request.session.IS_LOGIN %}
+        <div class="nav">
+            <div class="left" style="height: 70px;float: left">左边的</div>
+            <div class="right" style="height: 70px;float: right">
+                <a href="{% url 'Home:login'%}">登录</a>
+                <a href="{% url 'Home:register' %}">注册</a>
+            </div>
+        </div>
+        
+    {% else %}
+        用户已登录, {{ user.username }}
+    {% endif %}
+
+    </div>
 {% endblock %}

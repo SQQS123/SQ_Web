@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Home.apps.HomeConfig',
     'comics.apps.ComicsConfig',
     'books.apps.BooksConfig',
+    'personal.apps.PersonalConfig',
 ]
 
 MIDDLEWARE = [

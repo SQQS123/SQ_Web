@@ -40,6 +40,7 @@ def user_register_fail(request):
 # But you have to login at first
 def login(request):
     context = dict()
+    request.session['IS_LOGIN'] = False
     form = UserLoginForm()
     if request.method == "POST":
         form = UserLoginForm(request.POST)
@@ -54,8 +55,11 @@ def login(request):
                                   nickname=user.nickname)
                 request.session['login_user'] = login_user
                 request.session['IS_LOGIN'] = True
-                return HttpResponse("登录成功")
-                # return HttpResponseRedirect(reverse("Home:user_index"))
+                context["user"] = user
+                # go to personal homepage
+                # return HttpResponseRedirect(reverse("Home:" + "home",request))
+                print(request.session["IS_LOGIN"])
+                return render(request, 'Home/Home.html', context)
             else:
                 context['error_message'] = "账号或密码错误！"
 
@@ -75,5 +79,7 @@ def check_login(func):
 
 
 # We'll see homepage first
+
 def home(request):
+    request.session["IS_LOGIN"] = False
     return render(request, 'Home/Home.html')
