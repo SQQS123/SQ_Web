@@ -9,12 +9,17 @@
 第{{ bookid }}书 第{{ chapterid }}章 第{{ sectionid }}节
 <br>
 
+{% load static %}
 <!--下面的应该由后端搜索得到-->
 <div class="content" style="border: solid 1px red;">
-    <div class="text" style="width: 45%;border: solid 1px black;display: inline-block"><br>&nbsp;&nbsp;且听说一人，乃宋朝汴京人氏，姓金，双名维厚，乃是经纪行中人。<br>少不得朝晨起早，晚夕眠迟，睡醒来，千思想，万算计，拣有便宜的才做。<br>后来家事挣得从容了，他便思想一个久远方法：手头用来用去的，只是那散碎银子若是上两块头好银，便存着不动。<br>约得百两，便熔成一大锭，把一综红线结成一绦，系在锭腰，放在枕边。<br>夜来摩弄一番，方才睡下。<br>积了一生，整整熔成八锭，以后也就随来随去，再积不成百两，他也罢了。<br>金老生有四子。<br>一日，是他七十寿旦，四子置酒上寿。<br>金老见了四子跻跻跄跄，心中喜欢。<br>便对四子说道：“我靠皇天覆庇，虽则劳碌一生，家事尽可度日。<br>况我平日留心，有熔成八大锭银子永不动用的，在我枕边，见将绒线做对儿结着。<br>今将拣个好日子分与尔等，每人一对，做个镇家之宝。”四子喜谢，尽欢而散。<br><br></div>
-    <div class="hua" style="width: 45%;border: solid 1px black;display: inline-block;float: right;">漫画</div>
+    <div class="text" style="width: 45%;border: solid 1px black;display: inline-block;height: 1000px;"><br>&nbsp;&nbsp;且听说一人，乃宋朝汴京人氏，姓金，双名维厚，乃是经纪行中人。<br>少不得朝晨起早，晚夕眠迟，睡醒来，千思想，万算计，拣有便宜的才做。<br>后来家事挣得从容了，他便思想一个久远方法：手头用来用去的，只是那散碎银子若是上两块头好银，便存着不动。<br>约得百两，便熔成一大锭，把一综红线结成一绦，系在锭腰，放在枕边。<br>夜来摩弄一番，方才睡下。<br>积了一生，整整熔成八锭，以后也就随来随去，再积不成百两，他也罢了。<br>金老生有四子。<br>一日，是他七十寿旦，四子置酒上寿。<br>金老见了四子跻跻跄跄，心中喜欢。<br>便对四子说道：“我靠皇天覆庇，虽则劳碌一生，家事尽可度日。<br>况我平日留心，有熔成八大锭银子永不动用的，在我枕边，见将绒线做对儿结着。<br>今将拣个好日子分与尔等，每人一对，做个镇家之宝。”四子喜谢，尽欢而散。<br><br></div>
+    <div class="hua" style="width: 45%;border: solid 1px black;float: right;">
+        <img src="{% static 'mz.jpg' %}" alt="">
+    </div>
+    <!--
     <div class="text" style="width: 45%;border: solid 1px black;display: inline-block">文字</div>
     <div class="hua" style="width: 45%;border: solid 1px black;display: inline-block;float: right;">漫画</div>
+    -->
 </div>
 
 
