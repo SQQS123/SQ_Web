@@ -44,6 +44,7 @@ def bookmenu(request,book_name):
             i = i + 1
 
         paginator = Paginator(section_cnt, 1)
+        # paginator.page_range -> range(1, xxx)
         try:
             page = int(request.GET['page'])
             book_content = paginator.page(page)
@@ -56,22 +57,3 @@ def bookmenu(request,book_name):
     }
     return render(request, 'books/bookcontent.html', context)
 
-
-# section menu
-def sectionmenu(request,back_bookid, back_chapterid):
-    context = {
-        "bookid":back_bookid,
-        "chapterid":back_chapterid
-    }
-
-    return render(request, 'books/sectionmenu.html', context)
-
-
-# content
-def content(request, back_bookid, back_chapterid, back_sectionid):
-    context = {
-        "bookid": back_bookid,
-        "chapterid": back_chapterid,
-        "sectionid": back_sectionid
-    }
-    return render(request, 'books/content.html', context)

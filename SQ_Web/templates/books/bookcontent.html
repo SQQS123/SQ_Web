@@ -14,14 +14,31 @@
  <h3>{{ book_name }}</h3>
 </div>
 -->
-<div class="col-md-12 col-sm-offset-1 main">
- {% for content in book_content %}
- <span>{{ content }}</span>
- {% endfor %}
+
+
+{% load static %}
+<!--下面的应该由后端搜索得到-->
+<div class="content" style="border: solid 1px red;">
+    <div class="text" style="width: 45%;border: solid 1px black;display: inline-block;">
+
+         {% for content in book_content %}
+             <pre style="white-space: pre-wrap;word-wrap: break-word;">{{ content }}</pre>
+         {% endfor %}
+    </div>
+    <div class="hua" style="width: 45%;border: solid 1px black;float: right;">
+        <img src="{% static 'mz.jpg' %}" alt="">
+    </div>
+    <!--
+    <div class="text" style="width: 45%;border: solid 1px black;display: inline-block">文字</div>
+    <div class="hua" style="width: 45%;border: solid 1px black;display: inline-block;float: right;">漫画</div>
+    -->
 </div>
 
-<div class="pagination">
- <div class="col-md-4 ">
+
+
+
+<div class="pagination" style="width: 300px; height: 100px;">
+ <div class="col-md-4 " style="float: left">
   {% if book_content.has_previous %}
   <i class="fa fa-arrow-left" aria-hidden="true">
    <a href="?book_name={{ book_name }}&page={{ book_content.previous_page_number }}" rel="external nofollow" >
@@ -32,14 +49,11 @@
   {% endif %}
  </div>
 
- <div class="col-md-4 ">
-  <h5>
+ <div class="col-md-4 " style="float: left;display: inline-block">
    第{{ book_content.number }}页/共{{ book_content.paginator.num_pages }}页
-  </h5>
-
  </div>
  {% if book_content.has_next %}
- <div class="col-md-4 ">
+ <div class="col-md-4 " style="float: left">
   <a href="?book_name={{book_name}}&page={{ book_content.next_page_number }}" rel="external nofollow" >
    下一页
   </a>
