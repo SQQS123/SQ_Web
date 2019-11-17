@@ -5,6 +5,9 @@
     <title>画文网-books</title>
 </head>
 <body>
-<a href="/books/book_1">拍案惊奇</a>
+<a href="/books/book_1">拍案惊奇</a><br>
+{% for name in book_name %}
+    <a href="{% url "Book:book_name" name %}">{{ name }}</a><br>
+{% endfor %}
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bookcontent</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<!--
+<div class="header text-center ">
+ <a href="/index/" rel="external nofollow" style="float: left;">
+  <i class="fa fa-home fa-2x" aria-hidden="true">Home</i>
+ </a>
+ <h3>{{ book_name }}</h3>
+</div>
+-->
+<div class="col-md-12 col-sm-offset-1 main">
+ {% for content in book_content %}
+ <span>{{ content }}</span>
+ {% endfor %}
+</div>
+
+<div class="pagination">
+ <div class="col-md-4 ">
+  {% if book_content.has_previous %}
+  <i class="fa fa-arrow-left" aria-hidden="true">
+   <a href="?book_name={{ book_name }}&page={{ book_content.previous_page_number }}" rel="external nofollow" >
+    上一页
+   </a>
+  </i>
+
+  {% endif %}
+ </div>
+
+ <div class="col-md-4 ">
+  <h5>
+   第{{ book_content.number }}页/共{{ book_content.paginator.num_pages }}页
+  </h5>
+
+ </div>
+ {% if book_content.has_next %}
+ <div class="col-md-4 ">
+  <a href="?book_name={{book_name}}&page={{ book_content.next_page_number }}" rel="external nofollow" >
+   下一页
+  </a>
+  <i class="fa fa-arrow-right" aria-hidden="true">
+  </i>
+ </div>
+ {% endif %}
+</div>
+</body>
+</html>
