@@ -19,10 +19,10 @@
 {% load static %}
 <!--下面的应该由后端搜索得到-->
 <div class="content" style="border: solid 1px red;">
-    <div class="text" style="width: 45%;border: solid 1px black;display: inline-block;">
+    <div class="text" style="width: 45%;min-height: 1000px;border: solid 1px black;display: inline-block;">
 
          {% for content in book_content %}
-             <pre style="white-space: pre-wrap;word-wrap: break-word;">{{ content }}</pre>
+             <pre style="white-space: pre-wrap;word-wrap: break-word;font-family: 楷体; font-size: 27px;">{{ content }}</pre>
          {% endfor %}
     </div>
     <div class="hua" style="width: 45%;border: solid 1px black;float: right;">
@@ -36,7 +36,15 @@
 
 
 
-
+<div>
+    <form action="." method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="page" value={{ page }}>
+        <label for="id_paintsfile">个人作品：</label>
+        <input type="file" name="paints" accept="paints/*" id="id_paintsfile"><span>{{ errors_obj.paints.0 }}</span>
+        <input type="submit" value="确定">
+    </form>
+</div>
 <div class="pagination" style="width: 300px; height: 100px;">
  <div class="col-md-4 " style="float: left">
   {% if book_content.has_previous %}

@@ -14,6 +14,7 @@ def register(request):
     if request.method == "POST":
         url_name = 'register_fail'
         form = UserRegisterForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
             result = form.save()
             if result:
@@ -50,6 +51,7 @@ def login(request):
             user = Users.objects.filter(username=username, password=password)
             if user:
                 user = user[0]
+                print(user.get_portrait_url())
                 login_user = dict(username=user.username,
                                   portrait=str(user.portrait),
                                   nickname=user.nickname)
@@ -74,7 +76,7 @@ def check_login(func):
         if is_login:
             return func(request, *args, **kwargs)
         else:
-            return redirect('login/')
+            return redirect('/login/')
     return wrapper
 
 
