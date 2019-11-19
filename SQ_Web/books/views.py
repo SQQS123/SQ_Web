@@ -73,7 +73,10 @@ def bookmenu(request,book_name):
         section_cnt = split_article_content(filename)
         paginator = Paginator(section_cnt, 1)
         max_idx = len(Comics.objects.filter(bookname=book_name))
-        idx = random.randint(1, max_idx)
+        if max_idx == 1:
+            idx = 1
+        else:
+            idx = random.randint(1, max_idx)
         try:
             paintsurl = Comics.objects.filter(bookname = book_name)[idx].get_paintsfile_url()
         except Exception as e:
