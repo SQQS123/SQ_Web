@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+# import logging
+#
+# logger = logging.getLogger('default')
+#
+#
+# class ExceptionLoggingMiddleware(object):
+#     def process_exception(self, request, exception):
+#         import traceback
+#         logger.error(traceback.format_exc())
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +52,10 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'personal.apps.PersonalConfig',
 ]
+
+# MIDDLEWARE_CLASSES = (
+#     ExceptionLoggingMiddleware
+# )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -137,3 +151,48 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# logger
+# DEFAULT_LOGS = '/tmp/default.log'
+# stamdard_format = '[%(asctime)s][%(threadName)s:%(thread)d]' + \
+#                   '[task_id:%(name)s][%(filename)s:%(lineno)d] ' + \
+#                   '[%(levelname)s]- %(message)s'
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'standard': {  # 详细
+#             'format': stamdard_format
+#         },
+#     },
+#     'handlers': {
+#         'default': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': DEFAULT_LOGS,
+#             'maxBytes': 1024 * 1024 * 100,  # 5 MB
+#             'backupCount': 5,
+#             'formatter': 'standard',
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'default': {  # default日志，存放于log中
+#             'handlers': ['default'],
+#             'level': 'DEBUG',
+#         },
+#         'django.db': {  # 打印SQL语句到console，方便开发
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'django.request': {  # 打印错误信息到console，方便开发
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     }
+# }

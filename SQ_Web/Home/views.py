@@ -3,8 +3,11 @@ from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from .forms import UserRegisterForm, UserLoginForm
 from .models import Users
+
+
 
 
 # Registered users can do more
@@ -85,3 +88,12 @@ def check_login(func):
 def home(request):
     request.session["IS_LOGIN"] = False
     return render(request, 'Home/Home.html')
+
+#404页面
+@csrf_exempt
+def page_not_found(request, e):
+    return HttpResponse('404页面未找到')
+
+@csrf_exempt
+def page_error(request):
+    return HttpResponse('500')
