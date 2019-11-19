@@ -6,11 +6,12 @@ from Home.models import Users
 from comics.models import Comics
 from .forms import UploadPaintsForm
 import os
+import random
 
 # windows
-BOOK_PATH_DIR = r"D:/books/"
+# BOOK_PATH_DIR = r"D:/books/"
 # linux
-# BOOK_PATH_DIR = r"/root/books/"
+BOOK_PATH_DIR = r"/root/books/"
 BOOK_NAME_LST = []
 for root, dirs, files in os.walk(BOOK_PATH_DIR):
     for file in files:
@@ -71,8 +72,10 @@ def bookmenu(request,book_name):
     if request.method == 'GET':
         section_cnt = split_article_content(filename)
         paginator = Paginator(section_cnt, 1)
+        max_idx = len(Comics.objects.filter(bookname=book_name))
+        idx = random.randint(1, max_idx)
         try:
-            paintsurl = Comics.objects.get(bookname = book_name).get_paintsfile_url()
+            paintsurl = Comics.objects.filter(bookname = book_name)[idx].get_paintsfile_url()
         except Exception as e:
             paintsurl = "/media/paints/default.jpg"
         context["paintsurl"] = paintsurl
