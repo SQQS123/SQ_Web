@@ -71,7 +71,10 @@ def bookmenu(request,book_name):
     if request.method == 'GET':
         section_cnt = split_article_content(filename)
         paginator = Paginator(section_cnt, 1)
-        paintsurl = Comics.objects.get(bookname = book_name).get_paintsfile_url()
+        try:
+            paintsurl = Comics.objects.get(bookname = book_name).get_paintsfile_url()
+        except Exception as e:
+            paintsurl = "/media/paints/default.jpg"
         context["paintsurl"] = paintsurl
         # paginator.page_range -> range(1, xxx)
         try:
