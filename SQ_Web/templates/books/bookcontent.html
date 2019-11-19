@@ -26,7 +26,7 @@
          {% endfor %}
     </div>
     <div class="hua" style="width: 45%;border: solid 1px black;float: right;">
-        <img src="{% static 'mz.jpg' %}" alt="">
+        <img src="{{ paintsurl }}" alt="">
     </div>
     <!--
     <div class="text" style="width: 45%;border: solid 1px black;display: inline-block">文字</div>
@@ -35,10 +35,11 @@
 </div>
 
 
-
+{{ user.username }}
 <div>
     <form action="." method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <input type="hidden" name="bookname" value={{ book_name }}>
         <input type="hidden" name="page" value={{ page }}>
         <label for="id_paintsfile">个人作品：</label>
         <input type="file" name="paints" accept="paints/*" id="id_paintsfile"><span>{{ errors_obj.paints.0 }}</span>

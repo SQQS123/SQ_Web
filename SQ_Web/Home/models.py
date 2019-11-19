@@ -27,5 +27,5 @@ class Users(models.Model):
 
     def get_portrait_url(self):
         if not self.portrait:
-            return settings.STATIC_URL + PORTRAIT_DEFAULT_PATH
+            return settings.MEDIA_URL + PORTRAIT_DEFAULT_PATH
         return self.portrait.url

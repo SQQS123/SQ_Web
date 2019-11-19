@@ -5,7 +5,9 @@ app_name = 'Book'
 
 urlpatterns = [
  # book list
+
  path('', views.Books, name='books'),
+ path('find/', views.get_bookname, name='findbooks'),
  # chapter menu
  path("<str:book_name>/", views.bookmenu, name="book_name"),
 

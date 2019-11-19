@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from Home.views import check_login
+from Home.models import Users
+from comics.models import Comics
 from .forms import UploadPaintsForm
 import os
 
@@ -13,6 +15,13 @@ for root, dirs, files in os.walk(BOOK_PATH_DIR):
         BOOK_NAME_LST.append(file[:-4])
 
 
+# 测试
+def get_bookname(request):
+    test = Comics.objects.get(bookname = "三字经")
+    print(test.bookname)
+    return HttpResponse("查找书名为xx的comics")
+
+
 # 所有书籍名的菜单
 def Books(request):
     context = {
@@ -22,8 +31,8 @@ def Books(request):
 
 
 @check_login
-def upload_file(form):
-    pass
+def get_user(request):
+    return request.session['login_user']
 
 
 def split_article_content(filename):
@@ -60,6 +69,8 @@ def bookmenu(request,book_name):
     if request.method == 'GET':
         section_cnt = split_article_content(filename)
         paginator = Paginator(section_cnt, 1)
+        paintsurl = Comics.objects.get(bookname = book_name).get_paintsfile_url()
+        context["paintsurl"] = paintsurl
         # paginator.page_range -> range(1, xxx)
         try:
             page = int(request.GET['page'])
@@ -73,24 +84,34 @@ def bookmenu(request,book_name):
             context["book_content"] = book_content
 
     if request.method == 'POST':
+        user = get_user(request)
         context = {
             "book_name": book_name,
+            "user": user
         }
         form = UploadPaintsForm(request.POST, request.FILES)
+        # 找到用户名的id
+        form.instance.painter_id = Users.objects.get(username = user["username"]).id
+        # form.instance.bookname = book_name
+
+        print(user)
         print(form.is_valid())
-        # print(request.POST,request.FILES)
-        # print(request.POST["paintsfile"])
+        print(form)
         if form.is_valid():
+            page = form.cleaned_data['page']
+            print(page)
+            form.instance.page = page
             result = form.save()
             if result:
                 print("True")
-            page = form.cleaned_data['page']
-            print(page)
+            return HttpResponse("提交成功")
         else:
             errors_obj = form.errors
             context["errors_obj"] = errors_obj
             # print("page_errors:",form.errors["page"])
-            print("paints_errors:", form.errors["paints"])
+            # print("paints_errors:", form.errors["paints"])
+        # 应该返回一个提交成功的页面
+        return HttpResponse("提交失败")
     # print(context['page'])
     return render(request, 'books/bookcontent.html', context)
 
