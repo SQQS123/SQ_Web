@@ -10,7 +10,7 @@ import os
 # windows
 BOOK_PATH_DIR = r"D:/books/"
 # linux
-BOOK_PATH_DIR = r"/root/books/"
+# BOOK_PATH_DIR = r"/root/books/"
 BOOK_NAME_LST = []
 for root, dirs, files in os.walk(BOOK_PATH_DIR):
     for file in files:
