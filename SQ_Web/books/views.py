@@ -11,7 +11,7 @@ import random
 # windows
 # BOOK_PATH_DIR = r"D:/books/"
 # linux
-BOOK_PATH_DIR = r"/root/books/"
+BOOK_PATH_DIR = r"/mnt/books/"
 BOOK_NAME_LST = []
 for root, dirs, files in os.walk(BOOK_PATH_DIR):
     for file in files:
@@ -74,7 +74,7 @@ def bookmenu(request,book_name):
         paginator = Paginator(section_cnt, 1)
         max_idx = len(Comics.objects.filter(bookname=book_name))
         if max_idx <= 1:
-            idx = 1
+            idx = 0
         else:
             idx = random.randint(1, max_idx)
         try:
