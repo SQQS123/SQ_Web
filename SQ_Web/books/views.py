@@ -98,6 +98,8 @@ def bookmenu(request,book_name):
 
     if request.method == 'POST':
         user = get_user(request)
+        if not isinstance(user,dict):
+            return HttpResponse("请先注册~")
         context = {
             "book_name": book_name,
             "user": user
