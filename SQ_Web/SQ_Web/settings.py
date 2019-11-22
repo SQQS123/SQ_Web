@@ -100,6 +100,7 @@ DATABASES = {
         'NAME': 'sq_web',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+        # "PASSWORD": '123456',
         "PASSWORD": '741WHITEsq!',
         "USER": 'root'
     }

@@ -19,15 +19,16 @@
 {% load static %}
 <!--下面的应该由后端搜索得到-->
 <div class="content" style="border: solid 1px red;">
-    <div class="text" style="width: 45%;min-height: 1000px;border: solid 1px black;display: inline-block;">
+    <div class="hua" style="min-height: 500px;border: solid 1px black;">
+        <img src="{{ paintsurl }}" alt="">
+    </div>
+    <div class="text" style="min-height: 200px;border: solid 1px black;display: inline-block;">
 
          {% for content in book_content %}
              <pre style="white-space: pre-wrap;word-wrap: break-word;font-family: 楷体; font-size: 27px;">{{ content }}</pre>
          {% endfor %}
     </div>
-    <div class="hua" style="width: 45%;border: solid 1px black;float: right;">
-        <img src="{{ paintsurl }}" alt="">
-    </div>
+
     <!--
     <div class="text" style="width: 45%;border: solid 1px black;display: inline-block">文字</div>
     <div class="hua" style="width: 45%;border: solid 1px black;display: inline-block;float: right;">漫画</div>
